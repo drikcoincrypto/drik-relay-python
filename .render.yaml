@@ -1,11 +1,11 @@
-ervices:
+services:
   - type: web
-name: drik-relay
-env: python
-buildCommand: pip install -r requirements.txt
-startCommand: gunicorn app:app --workers 4 --timeout 120
-envVars:
-- key: BOT_TOKEN
-sync: false
-- key: RELAY_URL
-sync: false
+    name: drik-relay
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 4 --timeout 120
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: RELAY_URL
+        sync: false
