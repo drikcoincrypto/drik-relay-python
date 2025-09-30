@@ -1,6 +1,10 @@
 from flask import Flask, request
 import requests
 import os
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
+# غیرفعال کردن هشدار SSL
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 TOKEN = os.environ.get('BOT_TOKEN')
 RELAY_URL = os.environ.get('RELAY_URL')
@@ -11,7 +15,8 @@ app = Flask(__name__)
 def relay():
     update = request.json
     if update:
-        requests.post(f"{RELAY_URL}", json=update)
+        # ارسال به مقصد بدون بررسی SSL
+        requests.post(RELAY_URL, json=update, verify=False)
     return {'status': 'ok'}
 
 if __name__ == '__main__':
