@@ -15,8 +15,7 @@ app = Flask(__name__)
 def relay():
     update = request.json
     if update:
-        # ارسال به مقصد بدون بررسی SSL
-        requests.post(RELAY_URL, json=update, verify=False)
+        requests.post(RELAY_URL, json=update, verify=False)  # بی‌اعتبار کردن SSL
     return {'status': 'ok'}
 
 if __name__ == '__main__':
