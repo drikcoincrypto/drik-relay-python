@@ -15,8 +15,8 @@ app = Flask(__name__)
 def relay():
     update = request.json
     if update:
-        # ارسال با بی‌اعتبار کردن SSL و محدود کردن زمان انتظار
         try:
+            # ارسال با بی‌اعتبار کردن SSL و محدود کردن زمان انتظار
             requests.post(RELAY_URL, json=update, verify=False, timeout=10)
         except Exception as e:
             print("Error sending request:", e)
